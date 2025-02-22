@@ -20,7 +20,7 @@ export default function LandingPage () {
           </Link>
         </p>
         <p className='text-md text-muted-foreground'>
-          Don't have an account?{' '}
+          Dont have an account?{' '}
           <Link
             href='/sign-up'
             className='text-primary font-semibold underline'
