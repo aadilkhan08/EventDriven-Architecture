@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Pagination } from "@/components/Pagination";
 import { useDebounceValue } from "usehooks-ts";
+import { Loader2 } from "lucide-react";
 
 interface UserWithTodos extends User {
   todos: Todo[];
@@ -91,7 +92,7 @@ export default function AdminDashboard() {
         title: "Success",
         description: "Subscription updated successfully.",
       });
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         toast({
           title: "Error",
@@ -101,7 +102,7 @@ export default function AdminDashboard() {
       } else {
         toast({
           title: "Error",
-          description: "Failed to fetch user data. Please try again.",
+          description: "Failed to update subscription. Please try again.",
           variant: "destructive",
         });
       }
@@ -126,7 +127,7 @@ export default function AdminDashboard() {
       if (!response.ok) throw new Error("Failed to update todo");
       fetchUserData(currentPage);
       toast({ title: "Success", description: "Todo updated successfully." });
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         toast({
           title: "Error",
@@ -136,7 +137,7 @@ export default function AdminDashboard() {
       } else {
         toast({
           title: "Error",
-          description: "Failed to fetch user data. Please try again.",
+          description: "Failed to update todo. Please try again.",
           variant: "destructive",
         });
       }
@@ -157,7 +158,7 @@ export default function AdminDashboard() {
       if (!response.ok) throw new Error("Failed to delete todo");
       fetchUserData(currentPage);
       toast({ title: "Success", description: "Todo deleted successfully." });
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       if (error instanceof Error) {
         toast({
           title: "Error",
@@ -167,7 +168,7 @@ export default function AdminDashboard() {
       } else {
         toast({
           title: "Error",
-          description: "Failed to fetch user data. Please try again.",
+          description: "Failed to delete todo. Please try again.",
           variant: "destructive",
         });
       }
@@ -182,15 +183,32 @@ export default function AdminDashboard() {
           <CardTitle>Search User</CardTitle>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSearch} className="flex space-x-2">
+          <form
+            onSubmit={handleSearch}
+            className="flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0"
+          >
             <Input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter user email"
               required
+              className="w-full"
             />
-            <Button type="submit">Search</Button>
+            <Button
+              type="submit"
+              disabled={isLoading}
+              className="w-full sm:w-auto"
+            >
+              {isLoading ? (
+                <div className="flex items-center">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  <span className="opacity-75">Searching...</span>
+                </div>
+              ) : (
+                "Search"
+              )}
+            </Button>
           </form>
         </CardContent>
       </Card>
@@ -252,7 +270,9 @@ export default function AdminDashboard() {
           ) : (
             <Card>
               <CardContent className="text-center py-8">
-                <p className="text-muted-foreground">This user has no todos.</p>
+                <p className="text-muted-foreground">
+                  This user has no todos.
+                </p>
               </CardContent>
             </Card>
           )}

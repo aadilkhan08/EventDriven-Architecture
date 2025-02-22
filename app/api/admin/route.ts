@@ -11,13 +11,15 @@ async function isAdmin(userId: string) {
 }
 
 export async function GET(req: NextRequest) {
+  
   const { userId } = await auth();
-
+  
   if (!userId || !(await isAdmin(userId))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { searchParams } = new URL(req.url);
+  console.log("GET /api/admin called with email:", searchParams.get("email"));
   const email = searchParams.get("email");
   const page = parseInt(searchParams.get("page") || "1");
 
