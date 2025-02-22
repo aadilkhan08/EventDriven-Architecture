@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { useTheme } from "next-themes";
 import { Meteors } from "@/components/magicui/meteors";
 
 import {
