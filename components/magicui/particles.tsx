@@ -8,7 +8,6 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { Loader2 } from "lucide-react";
 
 interface MousePosition {
   x: number;
@@ -96,7 +95,7 @@ export const Particles: React.FC<ParticlesProps> = ({
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
   const rafID = useRef<number | null>(null);
-  const resizeTimeout = useRef<NodeJS.Timeout>();
+  const resizeTimeout = useRef<NodeJS.Timeout | null>(null);
   const rgb = hexToRgb(color);
 
   // Memoize remapValue
