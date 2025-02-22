@@ -53,6 +53,13 @@ export async function GET(req: NextRequest) {
       currentPage: page,
     });
   } catch (error) {
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: error.message },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
@@ -97,10 +104,17 @@ export async function PUT(req: NextRequest) {
       return NextResponse.json({ error: "Invalid request" }, { status: 400 });
     }
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    if (error instanceof Error) {
+        return NextResponse.json(
+          { error: error.message },
+          { status: 500 }
+        );
+      }
+  
+      return NextResponse.json(
+        { error: "Internal Server Error" },
+        { status: 500 }
+      );
   }
 }
 
@@ -124,9 +138,16 @@ export async function DELETE(req: NextRequest) {
 
     return NextResponse.json({ message: "Todo deleted successfully" });
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    if (error instanceof Error) {
+        return NextResponse.json(
+          { error: error.message },
+          { status: 500 }
+        );
+      }
+  
+      return NextResponse.json(
+        { error: "Internal Server Error" },
+        { status: 500 }
+      );
   }
 }

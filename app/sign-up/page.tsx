@@ -9,21 +9,18 @@ import { Input } from "@/components/ui/input";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Meteors } from "@/components/magicui/meteors";
 
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import LoadingScreen from "@/components/ui/loader";
 import toast from "react-hot-toast";
-import { ModeToggle } from "@/components/ModeToggle";
 
 function Signup() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -33,7 +30,6 @@ function Signup() {
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { setTheme } = useTheme();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);

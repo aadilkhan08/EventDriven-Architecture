@@ -39,12 +39,20 @@ export default function AdminDashboard() {
           title: "Success",
           description: "User data fetched successfully.",
         });
-      } catch (error) {
-        toast({
-          title: "Error",
-          description: "Failed to fetch user data. Please try again.",
-          variant: "destructive",
-        });
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: "Failed to fetch user data. Please try again.",
+            variant: "destructive",
+          });
+        }
       } finally {
         setIsLoading(false);
       }
@@ -83,12 +91,20 @@ export default function AdminDashboard() {
         title: "Success",
         description: "Subscription updated successfully.",
       });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to update subscription. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to fetch user data. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -110,12 +126,20 @@ export default function AdminDashboard() {
       if (!response.ok) throw new Error("Failed to update todo");
       fetchUserData(currentPage);
       toast({ title: "Success", description: "Todo updated successfully." });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to update todo. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to fetch user data. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 
@@ -133,12 +157,20 @@ export default function AdminDashboard() {
       if (!response.ok) throw new Error("Failed to delete todo");
       fetchUserData(currentPage);
       toast({ title: "Success", description: "Todo deleted successfully." });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to delete todo. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to fetch user data. Please try again.",
+          variant: "destructive",
+        });
+      }
     }
   };
 

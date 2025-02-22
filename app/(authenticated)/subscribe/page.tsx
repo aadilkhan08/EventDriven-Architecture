@@ -27,12 +27,20 @@ export default function SubscribePage() {
       } else {
         throw new Error("Failed to fetch subscription status");
       }
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "Failed to fetch subscription status. Please try again.",
-        variant: "destructive",
-      });
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to fetch user data. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setIsLoading(false);
     }

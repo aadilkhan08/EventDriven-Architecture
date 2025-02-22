@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
 import { Meteors } from "@/components/magicui/meteors";
 
 import {

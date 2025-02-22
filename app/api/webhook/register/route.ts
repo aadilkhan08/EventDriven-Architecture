@@ -39,12 +39,11 @@ export async function POST(req: Request) {
       "svix-signature": svix_signature,
     }) as WebhookEvent;
 
-  } catch (error: unknown) {
+  } catch (_error) {
     return new Response("Invalid signature", { status: 400 });
   }
 
   //   get the data from the event coming from clerk webhook
-  const { id } = evt.data;
   const eventType = evt.type;
 
   //   check if the event type is user.created

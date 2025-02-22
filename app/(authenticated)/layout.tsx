@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+
 import { Particles } from "@/components/magicui/particles";
 import Navbar from "@/components/Navbar";
 import { useTheme } from "next-themes";
