@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   // Check if all headers are present
   if (!svix_id || !svix_timestamp || !svix_signature) {
     return new Response("Missing svix headers", { status: 400 });
-  }
+  } 
 
   // Get the payload from the request
   const payload = await req.json();
